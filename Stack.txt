@@ -1,0 +1,100 @@
+		STACK
+
+LIFO
+Operations:
+
+push :- insertion (Stack overflow)
+pop :- deletion (Stack underflow)
+empty :- check if stack is empty or not
+top :- return the top of the stack
+size :- returns the number of elements
+
+USES
+Evaluating an expression
+Bracket Matching
+Backtracking
+Memory management
+Convert expression in one notation to another (like infix to postfix)
+Recursion
+Tower of Hanoi / Stock Span Problem
+Used in traversing non linear data structures like trees and graphs
+Undo/Redo operations
+Back and next windows are also built using stacks
+
+Implementation of stack can be done using an array or linked list
+
+#include<iostream>
+using namespace std;
+
+int stack[6], index;	// Global variable index gets initialized to 0 as global values are by default assigned the default values of the data type
+
+void push(int num)
+{
+if(index<=5)
+stack[index++] = num
+else
+cout<<"STACK OVERFLOW!"<<endl;
+}
+
+int top(){
+if(index <= 0 ||index>6)
+return -1;
+return stack[index-1];
+}
+
+int pop(){
+if(index <=0 || index>6)
+return -1;
+return stack[--index];
+}
+
+int main()
+{
+push(10);
+push(20);
+push(30);
+push(40);
+push(50);
+push(60);
+
+cout<<top()<<endl;
+}
+
+
+* Bracket Checking ( Check whether the braces occur in pair or not)
+eg :- {{}}  :- True ( It occur in pair)
+         }{     :- False (Not in pair) ( Closing brace can not come before opening brace)
+         {{}   :- False (Not in pair)
+
+Whenever we encounter '{' , we'll push it into the stack and whenever we encounter '}', we'll pop the top most element of the stack.
+And at the end, we'll check if the stack is empty or not i.e. if top = -1 or not, if it is , then o/p is true means it occur in pair otherwise false.
+
+OR
+
+Take a variable named open, if we encounter '{' , increase the variable open by 1, and for every '}' , decrement the variable by 1. 
+If at anytime the value of open variable is negative, then we'll print false and break.
+Otherwise at the end, we'll check if the value of open variable is 0 or not
+If it is zero, then we'll print True otherwise False.
+
+#include<iostream>
+using namespace std;
+bool check_pair(string s)
+{
+int open = 0;
+for(int i = 0; i < s.size(); i++)
+{
+if(s[i]=='{')
+open++;
+else
+open--;
+if(open<0)
+return false;
+}
+if(open == 0)
+return true;
+}
+int main()
+{
+string s;
+cout<<check_pair(s);
+}
